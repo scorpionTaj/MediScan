@@ -1,0 +1,100 @@
+# Git files
+.git
+.gitignore
+
+# Frontend directories - exclude completely
+app/
+components/
+lib/
+hooks/
+config/
+public/
+styles/
+
+# Node.js files and dependencies
+node_modules/
+package*.json
+pnpm-lock.yaml
+next.config.mjs
+tailwind.config.ts
+tsconfig.json
+postcss.config.mjs
+components.json
+.next/
+out/
+
+# Frontend development files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Python cache (keep only local __pycache__)
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+
+# Virtual environments (exclude if not needed)
+venv/
+ENV/
+env/
+.venv/
+.conda/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Documentation
+README.md
+Rapport/
+
+# Docker files themselves
+Docker/
+docker-compose*.yml
+Dockerfile*
+*.bat
+
+# Test files
+test/
+tests/
+*.test.py
+
+# Environment files (will be handled via env_file in compose)
+.env.local
+.env.development
+.env.test
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Coverage reports
+htmlcov/
+.coverage
+.pytest_cache/
+
+# Jupyter notebooks
+*.ipynb
+.ipynb_checkpoints/
+
+# Static uploads (will be mounted as volumes)
+static/uploads/
+
+# Frontend build artifacts
+build/
+dist/

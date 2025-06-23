@@ -1,0 +1,81 @@
+services:
+  # Backend service (Flask API)
+  backend:
+    build:
+      context: ..
+      dockerfile: Docker/Dockerfile.backend
+    container_name: mediscan_backend
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../Backend:/usr/src/app/Backend
+      - ../static:/usr/src/app/static
+      - ../Backend/pneumonia_detection.keras:/usr/src/app/pneumonia_detection.keras:ro
+    env_file:
+      - ../Backend/.env
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/
+      - DATABASE_NAME=mediscan
+      - FLASK_ENV=development
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      mongo:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - mediscan-network
+  # Frontend service (Next.js)
+  frontend:
+    build:
+      context: ..
+      dockerfile: Docker/Dockerfile.frontend
+    container_name: mediscan_frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend:8000
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - mediscan-network
+
+  # MongoDB database
+  mongo:
+    image: mongo:latest
+    container_name: mediscan_mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=mediscan
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - mediscan-network
+
+volumes:
+  mongo_data:
+
+networks:
+  mediscan-network:
+    driver: bridge
