@@ -35,7 +35,7 @@ Pneumonia is a serious respiratory infection that affects millions of people wor
 ### 🔬 Core Medical Features
 
 - **🏥 X-ray Upload & Analysis**: Drag-and-drop interface for chest X-ray processing
-- **🤖 AI-Powered Diagnosis**: EfficientNet-B3 model with 94.2% accuracy
+- **🤖 AI-Powered Diagnosis**: EfficientNet-B0 model with 94.2% accuracy
 - **🔍 Grad-CAM Visualization**: Interactive heatmaps highlighting areas of interest
 - **📋 Clinical Reports**: Comprehensive medical documentation with AI insights
 - **👥 Patient Management**: Complete patient history tracking and record management
@@ -53,7 +53,7 @@ Pneumonia is a serious respiratory infection that affects millions of people wor
 
 ### 🧠 AI Model Pipeline
 
-**Model Architecture:** EfficientNet-B3
+**Model Architecture:** EfficientNet-B0
 
 - **Training Dataset**: 15,000+ chest X-ray images
 - **Preprocessing**: CLAHE enhancement, noise reduction, standardization
@@ -537,7 +537,7 @@ MediScan follows a modern, scalable architecture with clear separation of concer
 **🏥 Core Medical Features:**
 
 - ✅ Advanced X-ray upload with drag-and-drop interface
-- ✅ EfficientNet-B3 AI model with 94.2% accuracy
+- ✅ EfficientNet-B0 AI model with 94.2% accuracy
 - ✅ Interactive Grad-CAM visualization with heatmaps
 - ✅ Comprehensive clinical report generation
 - ✅ Multi-patient dashboard with history tracking
